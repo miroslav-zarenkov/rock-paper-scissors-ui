@@ -4,13 +4,34 @@ let computerSelection;
 let playerScore = 0;
 let computerScore = 0;
 let textResult;
+const rockButton = document.querySelector('#rock');
+const paperButton = document.querySelector('#paper');
+const scissorsButton = document.querySelector('#scissors');
+const playAgainButton = document.querySelector('#play-again');
+const results = document.querySelector(".results");
+const score = document.querySelector(".score")
+document.getElementById('rock').style.visibility = 'vissible';
+document.getElementById('paper').style.visibility = 'vissible';
+document.getElementById('scissors').style.visibility = 'vissible';
+document.getElementById('play-again').style.visibility = 'hidden';
+rockButton.addEventListener('click', setPlayerSelection);
+rockButton.addEventListener('click', game);
+paperButton.addEventListener('click', setPlayerSelection);
+paperButton.addEventListener('click', game);
+scissorsButton.addEventListener('click', setPlayerSelection);
+scissorsButton.addEventListener('click', game);
+playAgainButton.addEventListener('click', playAgain);
 
-function computerPlay(){
+function setComputerSelection(){
     return computerChoice[Math.floor(Math.random() * computerChoice.length)];
 }
 
+function setPlayerSelection(){
+    playerSelection = this.value;
+}
+
 function playRound(playerSelection, computerSelection){
-    computerSelection = computerPlay();
+    computerSelection = setComputerSelection();
     if (computerSelection === 'rock'){
         if (playerSelection === 'rock'){
            textResult = `Tie! Rock can't beat rock.`;
@@ -57,21 +78,7 @@ function game(){
     playRound(playerSelection, computerSelection);
     gameOver();
 }
-        
-function setPlayerSelection(){
-    playerSelection = this.value;
-}
-
-function playAgain(){
-    document.getElementById('rock').style.visibility = 'visible';
-    document.getElementById('paper').style.visibility = 'visible';
-    document.getElementById('scissors').style.visibility = 'visible';
-    document.getElementById('play-again').style.visibility = 'hidden';
-    playerScore = 0;
-    computerScore = 0;
-    score.textContent = `The score is ${playerScore} - ${computerScore}`;
-}
-
+   
 function gameOver(){
     if (playerScore == 5 || computerScore == 5){
         score.textContent = `Game Over. The score is ${playerScore} - ${computerScore}`;
@@ -88,20 +95,12 @@ function gameOver(){
     }
 }
 
-const rockButton = document.querySelector('#rock');
-rockButton.addEventListener('click', setPlayerSelection);
-rockButton.addEventListener('click', game);
-const paperButton = document.querySelector('#paper');
-paperButton.addEventListener('click', setPlayerSelection);
-paperButton.addEventListener('click', game);
-const scissorsButton = document.querySelector('#scissors');
-scissorsButton.addEventListener('click', setPlayerSelection);
-scissorsButton.addEventListener('click', game);
-const playAgainButton = document.querySelector('#play-again');
-playAgainButton.addEventListener('click', playAgain);
-const results = document.querySelector(".results");
-const score = document.querySelector(".score")
-document.getElementById('rock').style.visibility = 'vissible';
-document.getElementById('paper').style.visibility = 'vissible';
-document.getElementById('scissors').style.visibility = 'vissible';
-document.getElementById('play-again').style.visibility = 'hidden';
+function playAgain(){
+    document.getElementById('rock').style.visibility = 'visible';
+    document.getElementById('paper').style.visibility = 'visible';
+    document.getElementById('scissors').style.visibility = 'visible';
+    document.getElementById('play-again').style.visibility = 'hidden';
+    playerScore = 0;
+    computerScore = 0;
+    score.textContent = `The score is ${playerScore} - ${computerScore}`;
+}
