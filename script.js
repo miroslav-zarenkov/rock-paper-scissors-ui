@@ -15,15 +15,18 @@ document.getElementById('paper').style.visibility = 'vissible';
 document.getElementById('scissors').style.visibility = 'vissible';
 document.getElementById('play-again').style.visibility = 'hidden';
 rockButton.addEventListener('click', setPlayerSelection);
+rockButton.addEventListener('click', setComputerSelection);
 rockButton.addEventListener('click', game);
 paperButton.addEventListener('click', setPlayerSelection);
+paperButton.addEventListener('click', setComputerSelection);
 paperButton.addEventListener('click', game);
 scissorsButton.addEventListener('click', setPlayerSelection);
+scissorsButton.addEventListener('click', setComputerSelection);
 scissorsButton.addEventListener('click', game);
 playAgainButton.addEventListener('click', playAgain);
 
 function setComputerSelection(){
-    return computerChoice[Math.floor(Math.random() * computerChoice.length)];
+    computerSelection = computerChoice[Math.floor(Math.random() * computerChoice.length)];
 }
 
 function setPlayerSelection(){
@@ -31,7 +34,6 @@ function setPlayerSelection(){
 }
 
 function playRound(playerSelection, computerSelection){
-    computerSelection = setComputerSelection();
     if (computerSelection === 'rock'){
         if (playerSelection === 'rock'){
            textResult = `Tie! Rock can't beat rock.`;
